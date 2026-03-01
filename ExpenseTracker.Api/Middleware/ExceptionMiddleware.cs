@@ -30,7 +30,7 @@ public class ExceptionMiddleware
 
             var response = _env.IsDevelopment()
                 ? new { status = 500, message = ex.Message, stackTrace = ex.StackTrace }
-                : new { status = 500, message = "Internal Server Error" };
+                : new { status = 500, message = "Internal Server Error", stackTrace = (string?)null };
 
             var json = JsonSerializer.Serialize(response);
             await context.Response.WriteAsync(json);
